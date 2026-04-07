@@ -408,3 +408,9 @@ libraries and a frontend. This package is the substrate they share.
 ## License
 
 [MIT](LICENSE) © Aman Asmuei
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ in 🇲🇾 <strong>Malaysia</strong> · Part of the <a href="https://github.com/amanasmuei">aman ecosystem</a></sub>
+</div>
