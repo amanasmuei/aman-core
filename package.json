@@ -1,6 +1,6 @@
 {
   "name": "@aman_asmuei/aman-core",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Shared substrate for the aman ecosystem — Scope, Storage<T> interface, MarkdownFileStorage and DatabaseStorage backends, AsyncLocalStorage propagation, paths, and migration helpers.",
   "type": "module",
   "main": "./dist/index.js",
