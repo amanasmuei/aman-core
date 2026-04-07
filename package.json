@@ -1,0 +1,54 @@
+{
+  "name": "@aman_asmuei/aman-core",
+  "version": "0.2.0",
+  "description": "Shared substrate for the aman ecosystem — Scope, Storage<T> interface, MarkdownFileStorage and DatabaseStorage backends, AsyncLocalStorage propagation, paths, and migration helpers.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "prepare": "npm run build"
+  },
+  "dependencies": {},
+  "optionalDependencies": {
+    "better-sqlite3": "^12.0.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "aman",
+    "scope",
+    "multi-tenant",
+    "storage",
+    "ai-companion",
+    "ecosystem"
+  ],
+  "license": "MIT",
+  "author": "Aman Asmuei",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amanasmuei/aman-core.git"
+  }
+}
