@@ -148,7 +148,7 @@ The format is intentionally simple:
 |----------------------------|--------------|----------------------|----------------------------------|
 | `dev:default`              | local dev    | default              | acore CLI, single-user fallback  |
 | `dev:agent`                | local dev    | aman-agent runtime   | aman-agent CLI sessions          |
-| `dev:plugin`               | local dev    | Claude Code plugin   | aman-plugin / aman-mcp           |
+| `dev:plugin`               | local dev    | Claude Code plugin   | aman-claude-code / aman-mcp           |
 | `dev:cli`                  | local dev    | generic CLI          | one-off scripts                  |
 | `tg:12345`                 | Telegram 12345 | (unset)            | aman-tg per-user data            |
 | `agent:jiran`              | (none)       | jiran agent persona  | shared agent personality records |
@@ -195,7 +195,7 @@ layer call inside reads the scope implicitly — no parameter threading.
 ```typescript
 import { withScope, getCurrentScope } from "@aman_asmuei/aman-core";
 
-// In aman-plugin (Claude Code host):
+// In aman-claude-code (Claude Code host):
 await withScope("dev:plugin", async () => {
   // Every call inside here sees scope = "dev:plugin"
   await amem.recall("what do i know about pnpm");
@@ -334,18 +334,18 @@ The migration is idempotent and never deletes the legacy file.
         ┌─────────────────────┼─────────────────────┐
         │                     │                     │
         ▼                     ▼                     ▼
-┌──────────────┐    ┌──────────────┐    ┌──────────────┐
-│ aman-plugin  │    │  aman-agent  │    │   aman-tg    │
-│ Claude Code  │    │  CLI runtime │    │  Telegram    │
-│              │    │              │    │  super-app   │
-│ scope=       │    │ scope=       │    │ scope=       │
-│ dev:plugin   │    │ dev:agent    │    │ tg:userId    │
-└──────────────┘    └──────────────┘    └──────────────┘
+┌──────────────────┐    ┌──────────────────┐    ┌──────────────────┐
+│ aman-claude-code │    │    aman-agent    │    │     aman-tg      │
+│   Claude Code    │    │    CLI runtime   │    │     Telegram     │
+│                  │    │                  │    │    super-app     │
+│     scope=       │    │      scope=      │    │      scope=      │
+│    dev:plugin    │    │    dev:agent     │    │    tg:userId     │
+└──────────────────┘    └──────────────────┘    └──────────────────┘
 ```
 
 `aman-core` is the foundation. The four layer libraries (`acore-core`,
 `arules-core`, `amem-core`, future ones) consume it to build their
-multi-tenant features. The three frontends (Claude Code via `aman-plugin`,
+multi-tenant features. The three frontends (Claude Code via `aman-claude-code`,
 CLI via `aman-agent`, Telegram via `aman-tg`) all run on the same engine
 through this single substrate.
 
@@ -400,7 +400,7 @@ libraries and a frontend. This package is the substrate they share.
 | [@aman_asmuei/amem-core](https://github.com/amanasmuei/amem)            | Memory layer — semantic recall, embeddings          |
 | [@aman_asmuei/aman-mcp](https://github.com/amanasmuei/aman-mcp)         | MCP server aggregating all layers for any host      |
 | [@aman_asmuei/aman-agent](https://github.com/amanasmuei/aman-agent)     | Standalone CLI runtime, multi-LLM, scope-aware      |
-| [aman-plugin](https://github.com/amanasmuei/aman-plugin)                | Claude Code plugin (hooks + skills + MCP installer) |
+| [aman-claude-code](https://github.com/amanasmuei/aman-claude-code)                | Claude Code plugin (hooks + skills + MCP installer) |
 | [@aman_asmuei/aman](https://github.com/amanasmuei/aman)                 | Umbrella installer — one command for the ecosystem  |
 
 ---
